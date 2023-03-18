@@ -7,16 +7,16 @@
 Результат через список: Осень
 Результат через словарь: Осень
 """
-def print_message_from_list(month):
-    if month == 1 or 2 or 12:
+def print_message_from_list(month, month_list):
+    if month == 1 or month == 2 or month == 12:
         print(f'Введенный месяц является {month_list[0]}')
-    elif month == 3 or 4 or 5:
+    elif month == 3 or month == 4 or month == 5:
         print(f'Введенный месяц является {month_list[1]}')
-    elif month == 6 or 7 or 8:
+    elif month == 6 or month == 7 or month == 8:
         print(f'Введенный месяц является {month_list[2]}')
     else:
         print(f'Введенный месяц является {month_list[3]}')
-def print_message_from_dict(month):
+def print_message_from_dict(month, month_dict):
     print(f'Введенный месяц является {month_dict[month]}')
 
 month_list = ['зимой', 'весной', 'летом', 'осенью']
@@ -24,5 +24,13 @@ month_dict = {'1':'зимой', '2':'зимой', '12':'зимой', '3':'вес
               '5':'весной', '6':'летом', '7':'летом','8':'летом', '9':'осенью',
               '10':'осенью','11':'осенью',}
 month = input('Введите месяц числом: ')
-print_message_from_list(int(month))
-print_message_from_dict(month)
+try:
+    month = int(month)
+except ValueError:
+    print('Введенное значение не является числом')
+else:
+    if int(month) < 1 or int(month) > 12:
+        print('Введенное число не являеться месяцом')
+    else:
+        print_message_from_list(month, month_list)
+        print_message_from_dict(str(month), month_dict)
